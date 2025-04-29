@@ -18,7 +18,7 @@
         <a href="alaska.html" class="hover:text-pink-300 transition">Аляска</a>
         <a href="tokyo.html" class="hover:text-pink-300 transition">Токіо</a>
         <a href="jamaica.html" class="hover:text-pink-300 transition">Ямайка</a>
-        <button id="registerBtn" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded transition">Реєстрація</button>
+        <button id="registerBtn" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded transition">Реєстрація/Вхід</button>
       </div>
     </div>
   </nav>
@@ -26,22 +26,44 @@
   <!-- Modal Window -->
   <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-      <h2 class="text-2xl font-bold mb-4 text-blue-900">Реєстрація</h2>
-      <form id="registerForm" class="space-y-4">
-        <div>
-          <label for="name" class="block text-sm font-medium">Ім'я</label>
-          <input type="text" id="name" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500" required>
-        </div>
-        <div>
-          <label for="email" class="block text-sm font-medium">Електронна пошта</label>
-          <input type="email" id="email" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500" required>
-        </div>
-        <div>
-          <label for="password" class="block text-sm font-medium">Пароль</label>
-          <input type="password" id="password" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500" required>
-        </div>
-        <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 text-white p-2 rounded transition">Зареєструватися</button>
-      </form>
+      <div class="flex justify-between mb-4">
+        <button id="showRegister" class="text-blue-900 hover:text-pink-500 font-bold">Реєстрація</button>
+        <button id="showLogin" class="text-blue-900 hover:text-pink-500">Вхід</button>
+      </div>
+      <!-- Registration Form -->
+      <div id="registerFormContainer">
+        <h2 class="text-2xl font-bold mb-4 text-blue-900">Реєстрація</h2>
+        <form id="registerForm" class="space-y-4">
+          <div>
+            <label for="regName" class="block text-sm font-medium">Ім'я</label>
+            <input type="text" id="regName" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500" required>
+          </div>
+          <div>
+            <label for="regEmail" class="block text-sm font-medium">Електронна пошта</label>
+            <input type="email" id="regEmail" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500" required>
+          </div>
+          <div>
+            <label for="regPassword" class="block text-sm font-medium">Пароль</label>
+            <input type="password" id="regPassword" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500" required>
+          </div>
+          <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 text-white p-2 rounded transition">Зареєструватися</button>
+        </form>
+      </div>
+      <!-- Login Form -->
+      <div id="loginFormContainer" class="hidden">
+        <h2 class="text-2xl font-bold mb-4 text-blue-900">Вхід</h2>
+        <form id="loginForm" class="space-y-4">
+          <div>
+            <label for="loginEmail" class="block text-sm font-medium">Електронна пошта</label>
+            <input type="email" id="loginEmail" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500" required>
+          </div>
+          <div>
+            <label for="loginPassword" class="block text-sm font-medium">Пароль</label>
+            <input type="password" id="loginPassword" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500" required>
+          </div>
+          <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 text-white p-2 rounded transition">Увійти</button>
+        </form>
+      </div>
       <button id="closeModal" class="mt-4 text-blue-900 hover:text-pink-500">Закрити</button>
     </div>
   </div>
@@ -77,10 +99,17 @@
     const registerBtn = document.getElementById('registerBtn');
     const registerModal = document.getElementById('registerModal');
     const closeModal = document.getElementById('closeModal');
+    const showRegister = document.get儿button id="showRegister");
+    const showLogin = document.getElementById('showLogin');
+    const registerFormContainer = document.getElementById('registerFormContainer');
+    const loginFormContainer = document.getElementById('loginFormContainer');
     const registerForm = document.getElementById('registerForm');
+    const loginForm = document.getElementById('loginForm');
 
     registerBtn.addEventListener('click', () => {
       registerModal.classList.remove('hidden');
+      registerFormContainer.classList.remove('hidden');
+      loginFormContainer.classList.add('hidden');
     });
 
     closeModal.addEventListener('click', () => {
@@ -93,17 +122,42 @@
       }
     });
 
-    // Form Submission
+    showRegister.addEventListener('click', () => {
+      registerFormContainer.classList.remove('hidden');
+      loginFormContainer.classList.add('hidden');
+    });
+
+    showLogin.addEventListener('click', () => {
+      loginFormContainer.classList.remove('hidden');
+      registerFormContainer.classList.add('hidden');
+    });
+
+    // Register Form Submission
     registerForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+      const name = document.getElementById('regName').value;
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPassword').value;
 
       if (name && email && password) {
         alert('Реєстрація успішна! Ласкаво просимо, ' + name + '!');
         registerModal.classList.add('hidden');
         registerForm.reset();
+      } else {
+        alert('Будь ласка, заповніть усі поля.');
+      }
+    });
+
+    // Login Form Submission
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      if (email && password) {
+        alert('Вхід успішний! Ласкаво просимо!');
+        registerModal.classList.add('hidden');
+        loginForm.reset();
       } else {
         alert('Будь ласка, заповніть усі поля.');
       }
