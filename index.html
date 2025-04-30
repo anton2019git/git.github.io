@@ -12,33 +12,14 @@
       padding: 0;
       font-family: sans-serif;
     }
-
-    header {
-      text-align: center;
-      padding: 20px;
-      background-color: #f2f2f2;
-    }
-
-    .logo {
-      max-width: 100%;
-      height: auto;
-      width: 150px; /* Измените при необходимости */
-    }
   </style>
 </head>
 <body class="bg-pink-100 text-blue-900 font-roboto">
-  <!-- Header with Logo -->
-  <header>
-    <a href="index.html">
-      <img src="logo.gif" alt="Логотип сайта" class="logo">
-    </a>
-  </header>
-
   <!-- Navigation Bar -->
   <nav class="fixed top-0 w-full bg-blue-900 text-white shadow-md z-50">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-bold flex items-center">
-        <img src="logo.gif" alt="Логотип Путівник" class="w-8 h-8 mr-2"> <!-- Додано GIF -->
+        <img src="path-to-your-gif.gif" alt="Логотип Путівник" class="w-8 h-8 mr-2"> <!-- GIF біля Путівник -->
         Путівник
       </h1>
       <div class="space-x-4">
@@ -56,7 +37,7 @@
   <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
       <div class="flex justify-between mb-4">
-        <button id="showRegister" class="text-blue-900 hover:text-pink-500 font-bold">Реєstraція</button>
+        <button id="showRegister" class="text-blue-900 hover:text-pink-500 font-bold">Реєстрація</button>
         <button id="showLogin" class="text-blue-900 hover:text-pink-500">Вхід</button>
       </div>
       <!-- Registration Form -->
@@ -164,7 +145,7 @@
     // Register Form Submission
     registerForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = document.getElementById('reg面積').value;
+      const name = document.getElementById('regName').value;
       const email = document.getElementById('regEmail').value;
       const password = document.getElementById('regPassword').value;
 
