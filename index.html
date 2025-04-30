@@ -1,5 +1,50 @@
 <!DOCTYPE html>
 <html lang="uk">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сайт с фиксированным GIF-логотипом</title>
+  <style>
+    body {
+      margin: 0;
+      padding-top: 100px; /* чтобы контент не прятался под логотипом */
+      font-family: sans-serif;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .logo {
+      max-width: 100%;
+      height: auto;
+      width: 150px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html">
+      <img src="logo.gif" alt="Логотип сайта" class="logo">
+    </a>
+  </header>
+
+  <main>
+    <div style="padding: 20px;">
+      <h1>Пример контента</h1>
+      <p>Прокрути вниз, и логотип останется на месте.</p>
+      <p style="height: 1500px;">(Длинный блок для демонстрации прокрутки)</p>
+    </div>
+  </main>
+</body>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
